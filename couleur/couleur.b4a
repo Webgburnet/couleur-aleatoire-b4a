@@ -1,0 +1,144 @@
+﻿Version=5.02
+NumberOfModules=0
+Build1=Default,b4a.mastermind_std2a
+Build2=couleur,b4a.couleur
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~SetApplicationAttribute(android:theme, "@android:style/Theme.Holo")~\n~'End of default text.~\n~
+IconFile=
+NumberOfFiles=3
+File1=debug_5_02.bal
+File2=menu_5_02.bal
+File3=Regles_5_02.bal
+NumberOfLibraries=1
+Library1=core
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Couleur aléatoire
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: True
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: True
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	'Declaration des variables
+	Dim aleatoire1 As Int
+	Dim rouge As Int
+	Dim vert As Int
+	Dim bleu As Int
+	
+	'Sur tous les Layout
+	Private Fond As Panel
+	Private Quitter_button As Button
+	Private Quitter_panel As Panel
+	Private Retour_button As Button
+	Private Retour_panel As Panel
+	
+	'Layout menu
+		Private Debug_menu As Button
+	Private Debug_menu_panel As Panel
+	Private Regles_menu As Button
+	Private Regles_menu_panel As Panel
+	
+	'Layout Regles
+	Private Regle_regle_label As Label
+	Private Regles_regle_panel As Panel
+	
+	'Layout Debug
+	Private affiche_solution_panel As Panel
+	Private couleur_aleatoire1 As Label
+	Private Debug As Button
+	Private Debug_panel As Panel
+	Private afficher_All_couleur_panel As Panel
+	Private All_couleur_button As Button
+	Private All_couleur_Panel As Panel
+	Private couleur_aleatoire2 As Label
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	Activity.LoadLayout("menu_5_02")
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+Sub Regles_menu_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("regles_5_02")
+End Sub
+Sub Debug_menu_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("debug_5_02")
+	Jeu
+End Sub
+Sub Retour_button_Click
+	Activity.RemoveAllViews
+	Activity.LoadLayout("menu_5_02")
+End Sub
+Sub Quitter_button_Click
+	 If Msgbox2("Do you want to close the app?", "Close App","Yes","","No", Null)  = DialogResponse.POSITIVE Then
+      Activity.Finish
+    End If
+End Sub
+Sub Debug_Click
+	Debug_fct
+End Sub
+Sub Jeu
+	aleatoire1=1
+	rouge=0
+	vert=0
+	bleu=0
+End Sub
+Sub Debug_fct
+	aleatoire1=Rnd(1,7)
+	If aleatoire1=1 Then
+		couleur_aleatoire1.Color=Colors.Red
+		couleur_aleatoire1.Text=aleatoire1
+	End If
+	If aleatoire1=2 Then
+		couleur_aleatoire1.Color=Colors.Blue
+		couleur_aleatoire1.Text=aleatoire1
+	End If
+	If aleatoire1=3 Then
+		couleur_aleatoire1.Color=Colors.Yellow
+		couleur_aleatoire1.Text=aleatoire1
+	End If
+	If aleatoire1=4 Then
+		couleur_aleatoire1.Color=Colors.Green
+		couleur_aleatoire1.Text=aleatoire1
+	End If
+	If aleatoire1=5 Then
+		couleur_aleatoire1.Color=Colors.Cyan
+		couleur_aleatoire1.Text=aleatoire1
+	End If
+	If aleatoire1=6 Then
+		couleur_aleatoire1.Color=Colors.Magenta
+		couleur_aleatoire1.Text=aleatoire1
+	End If
+End Sub
+Sub All_couleur_button_Click
+	rouge=Rnd(0,256)
+	vert=Rnd(0,256)
+	bleu=Rnd(0,256)
+	couleur_aleatoire2.Color=Colors.RGB(rouge,vert,bleu)
+	couleur_aleatoire2.Text="R:"&rouge&" V:"&vert&" B:"&bleu
+End Sub
